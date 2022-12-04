@@ -67,9 +67,11 @@ public class ProductServiceImpl implements ProductService{
 
 	@Override
 	public Product updateProduct(Product product, Long id) {
-		Product dbProduct = productRepository.findById(id).get();
+		Product dbProduct = new Product();
 		
-		if(dbProduct == null) {
+		if(productRepository.findById(id).isPresent()) {
+			dbProduct = productRepository.findById(id).get();
+		}else {
 			throw new ResourceNotFoundException(HttpStatus.NOT_FOUND, "Product not found.");
 		}
 		
