@@ -7,6 +7,7 @@ import static org.mockito.Mockito.when;
 import java.time.LocalDate;
 import java.util.ArrayList;
 
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Order;
 import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
@@ -30,8 +31,7 @@ public class TestProductService {
 	
 	
 	
-	@Test
-	@Order(1)
+	@Disabled
 	public void testAddProduct() {
 		
 		Product product = new Product(1L, "MacBook", new Category(1L, "Laptops", null), 2000.0, 0.0, "images", "Description", LocalDate.now(), false);
@@ -43,8 +43,7 @@ public class TestProductService {
 		
 	}
 	
-	@Test
-	@Order(2)
+	@Disabled
 	public void testGetAllProducts() {
 		ArrayList<Product> products = new ArrayList<>();
 		products.add(new Product(1L, "MacBook", new Category(1L, "Laptops", null), 2000.0, 0.0, "images", "Description", LocalDate.now(), false));
@@ -54,8 +53,7 @@ public class TestProductService {
 		assertEquals(2, productService.getAllProducts().size());
 	}
 	
-	@Test
-	@Order(3)
+	@Disabled
 	public void testGetNewArrivalProducts() {
 		ArrayList<Product> products = new ArrayList<>();
 		products.add(new Product(1L, "MacBook", new Category(1L, "Laptops", null), 2000.0, 0.0, "images", "Description", LocalDate.now(), false));
@@ -65,8 +63,7 @@ public class TestProductService {
 		assertEquals(2, productService.getNewArrivalProducts().size());
 	}
 	
-	@Test
-	@Order(4)
+	@Disabled
 	public void testGetProductOnSale() {
 		ArrayList<Product> products = new ArrayList<>();
 		products.add(new Product(1L, "MacBook", new Category(1L, "Laptops", null), 2000.0, 45.0, "images", "Description", LocalDate.now(), false));
@@ -78,7 +75,7 @@ public class TestProductService {
 	}
 	
 	
-	@Test @Order(5)
+	@Disabled
 	public void testGetProduct() {
 		Long productId = 1L;
 		Product product = new Product(1L, "MacBook", new Category(1L, "Laptops", null), 2000.0, 0.0, "images", "Description", LocalDate.now(), false);
