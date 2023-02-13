@@ -69,8 +69,8 @@ spring:
 spring:
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
-    url: jdbc:mysql://${MYSQL_HOST:localhost}:${MYSQL_PORT:3306}/shop24x7_stage
-    username: root
+    url: jdbc:mysql://mysqldb-shop24x7:3306/shop24x7_stage
+    username: Tekbista375
     password: samuel545
   jpa:
     hibernate:
