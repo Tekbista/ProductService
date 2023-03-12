@@ -139,5 +139,11 @@ public class ProductServiceImpl implements ProductService{
 		return productRepository.findTop8ByOrderByCreatedOnDesc();
 	}
 
+	@Override
+	public List<Product> addProducts(List<Product> products) {
+		if(products.size() > 0) return productRepository.saveAll(products);
+		return null;
+	}
+
 
 }

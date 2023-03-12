@@ -38,6 +38,12 @@ public class ProductController {
 		return ResponseEntity.status(HttpStatus.CREATED).body(prod);
 	}
 	
+	@PostMapping("/multiple")
+	public ResponseEntity<List<Product>> addProducts(@Valid @RequestBody List<Product> products){
+		List<Product> prods = productService.addProducts(products);
+		return ResponseEntity.status(HttpStatus.CREATED).body(prods);
+	}
+	
 	@GetMapping("/{id}")
 	public ResponseEntity<Product> getProductById(@PathVariable("id") Long id){
 			Product product = productService.getProduct(id);
