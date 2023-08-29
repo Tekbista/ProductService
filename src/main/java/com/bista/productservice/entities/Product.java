@@ -62,7 +62,9 @@ public class Product {
 	@Column(name = "is_top_product", nullable = false)
 	private boolean topProduct;
 
-	
+	@Column(name = "quantity")
+	@Min(value = 1, message = "Quantity cannot be less than one.")
+	private Integer quantity;
 	
 
 }
