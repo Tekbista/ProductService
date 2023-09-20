@@ -2,6 +2,7 @@ package com.bista.productservice.config;
 
 import javax.sql.DataSource;
 
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.jdbc.DataSourceBuilder;
 import org.springframework.context.annotation.Bean;
@@ -18,6 +19,7 @@ public class DataSourceConfig {
 		
 		
 		DataSourceBuilder<?> dataSourceBuilder = DataSourceBuilder.create();
+		
 		
 		dataSourceBuilder.driverClassName(propertiesConfig.getDatasource().get("driverClassName"));
 		dataSourceBuilder.url(propertiesConfig.getDatasource().get("url"));

@@ -42,7 +42,7 @@ public class TestProductService {
 	
 	@Test
 	public void testAddProduct() {
-		Product product = new Product(1L, "MacBook", new Category(1L, "Laptops", null), 2000.0, 0.0, "images", "Description", LocalDate.now(), false, 1);
+		Product product = new Product(1L, "MacBook", new Category(1L, "Laptops", null), 2000.0, 0.0, new ArrayList<>(), "Description", LocalDate.now(), false, 1);
 		when(productRepository.save(product)).thenReturn(product);
 		assertEquals("MacBook", productService.addProduct(product).getProductName());	
 	}
@@ -50,7 +50,7 @@ public class TestProductService {
 	@Test
 	public void testGetProduct() {
 		Long productId = 1L;
-		Optional<Product> product = Optional.of(new Product(1L, "MacBook", new Category(1L, "Laptops", null), 2000.0, 0.0, "images", "Description", LocalDate.now(), false, 1));
+		Optional<Product> product = Optional.of(new Product(1L, "MacBook", new Category(1L, "Laptops", null), 2000.0, 0.0, new ArrayList<>(), "Description", LocalDate.now(), false, 1));
 		when(productRepository.existsById(productId)).thenReturn(true);
 		when(productRepository.findById(productId)).thenReturn(product);
 		assertEquals("MacBook", productService.getProduct(productId).getProductName());
@@ -71,8 +71,8 @@ public class TestProductService {
 	@Test
 	public void testGetAllProducts() {
 		ArrayList<Product> products = new ArrayList<>();
-		products.add(new Product(1L, "MacBook", new Category(1L, "Laptops", null), 2000.0, 0.0, "images", "Description", LocalDate.now(), false, 1));
-		products.add(new Product(2L, "Acer", new Category(1L, "Laptops", null), 1000.0, 50.0, "images", "Description", LocalDate.now(), false, 1));
+		products.add(new Product(1L, "MacBook", new Category(1L, "Laptops", null), 2000.0, 0.0, new ArrayList<>(), "Description", LocalDate.now(), false, 1));
+		products.add(new Product(2L, "Acer", new Category(1L, "Laptops", null), 1000.0, 50.0, new ArrayList<>(), "Description", LocalDate.now(), false, 1));
 		
 		when(productRepository.findAll()).thenReturn(products);
 		assertEquals(2, productService.getAllProducts().size());
@@ -99,8 +99,8 @@ public class TestProductService {
 	@Test
 	public void testGetNewArrivalProducts() {
 		ArrayList<Product> products = new ArrayList<>();
-		products.add(new Product(1L, "MacBook", new Category(1L, "Laptops", null), 2000.0, 0.0, "images", "Description", LocalDate.now(), false, 1));
-		products.add(new Product(2L, "Acer", new Category(1L, "Laptops", null), 1000.0, 50.0, "images", "Description", LocalDate.now(), false, 1));
+		products.add(new Product(1L, "MacBook", new Category(1L, "Laptops", null), 2000.0, 0.0, new ArrayList<>(), "Description", LocalDate.now(), false, 1));
+		products.add(new Product(2L, "Acer", new Category(1L, "Laptops", null), 1000.0, 50.0, new ArrayList<>(), "Description", LocalDate.now(), false, 1));
 		
 		when(productRepository.findTop8ByOrderByCreatedOnDesc()).thenReturn(products);
 		assertEquals(2, productService.getNewArrivalProducts().size());
@@ -111,8 +111,8 @@ public class TestProductService {
 	@Test
 	public void testGetProductOnSale() {
 		ArrayList<Product> products = new ArrayList<>();
-		products.add(new Product(1L, "MacBook", new Category(1L, "Laptops", null), 2000.0, 45.0, "images", "Description", LocalDate.now(), false, 1));
-		products.add(new Product(2L, "Acer", new Category(1L, "Laptops", null), 1000.0, 50.0, "images", "Description", LocalDate.now(), false, 1));
+		products.add(new Product(1L, "MacBook", new Category(1L, "Laptops", null), 2000.0, 45.0, new ArrayList<>(), "Description", LocalDate.now(), false, 1));
+		products.add(new Product(2L, "Acer", new Category(1L, "Laptops", null), 1000.0, 50.0, new ArrayList<>(), "Description", LocalDate.now(), false, 1));
 		
 		when(productRepository.findProductOnSale()).thenReturn(products);
 		assertTrue(productService.getProductOnSale().get(0).getDiscountPrice() > 0.0);
@@ -123,18 +123,18 @@ public class TestProductService {
 	@Test
 	public void testUpdateProduct() {
 		Long productId = 1L;
-		Product product = new Product(1L, "", new Category(1L, "", null), 2000.0, 0.0, "https://shop24x7/products/images/1", "", LocalDate.now(), false, 1);
-		Product updatedProduct = new Product(1L, "MacBook", new Category(1L, "Laptops", null), 2000.0, 0.0, "https://shop24x7/products/images/1", "Description", LocalDate.now(), false, 1);
-		Optional<Product> bdProduct = Optional.of(new Product(1L, "MacBook", new Category(1L, "Laptops", null), 2000.0, 0.0, "images", "Description", LocalDate.now(), false, 1));
+		Product product = new Product(1L, "", new Category(1L, "", null), 2000.0, 0.0, new ArrayList<>(), "", LocalDate.now(), false, 1);
+		Product updatedProduct = new Product(1L, "MacBook", new Category(1L, "Laptops", null), 2000.0, 0.0, new ArrayList<>(), "Description", LocalDate.now(), false, 1);
+		Optional<Product> bdProduct = Optional.of(new Product(1L, "MacBook", new Category(1L, "Laptops", null), 2000.0, 0.0, new ArrayList<>(), "Description", LocalDate.now(), false, 1));
 		when(productRepository.findById(productId)).thenReturn(bdProduct);
 		when(productRepository.save(product)).thenReturn(updatedProduct);
-		assertEquals("https://shop24x7/products/images/1", productService.updateProduct(product, productId).getImage());
+		assertEquals(new ArrayList<>(), productService.updateProduct(product, productId).getImage());
 	}
 	
 	@Test
 	public void testUpdateProductThrowException() {
 		Long productId = 1L;
-		Product product = new Product(1L, "", new Category(1L, "", null), 2000.0, 0.0, "https://shop24x7/products/images/1", "", LocalDate.now(), false, 1);
+		Product product = new Product(1L, "", new Category(1L, "", null), 2000.0, 0.0, new ArrayList<>(), "", LocalDate.now(), false, 1);
 		when(productRepository.findById(productId)).thenReturn(Optional.empty());
 		assertThrows(ResourceNotFoundException.class, () -> {
 			productService.updateProduct(product, productId);
@@ -147,8 +147,8 @@ public class TestProductService {
 		int numOfItemOnPageLong = 2;
 		Pageable pageable = PageRequest.of(pageNumber, numOfItemOnPageLong);
 		ArrayList<Product> products = new ArrayList<>();
-		products.add(new Product(1L, "MacBook", new Category(1L, "Laptops", null), 2000.0, 45.0, "images", "Description", LocalDate.now(), false, 1));
-		products.add(new Product(2L, "Acer", new Category(1L, "Laptops", null), 1000.0, 50.0, "images", "Description", LocalDate.now(), false, 1));
+		products.add(new Product(1L, "MacBook", new Category(1L, "Laptops", null), 2000.0, 45.0, new ArrayList<>(), "Description", LocalDate.now(), false, 1));
+		products.add(new Product(2L, "Acer", new Category(1L, "Laptops", null), 1000.0, 50.0, new ArrayList<>(), "Description", LocalDate.now(), false, 1));
 		//products.add(new Product(3L, "MacBook", new Category(1L, "Laptops", null), 2000.0, 45.0, "images", "Description", LocalDate.now(), false));
 		//products.add(new Product(4L, "Acer", new Category(1L, "Laptops", null), 1000.0, 50.0, "images", "Description", LocalDate.now(), false));
 		
