@@ -3,8 +3,6 @@ package com.bista.productservice.controller;
 
 import java.util.List;
 
-import javax.validation.Valid;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -22,6 +20,8 @@ import org.springframework.web.bind.annotation.RestController;
 import com.bista.productservice.dto.PageableProduct;
 import com.bista.productservice.entities.Product;
 import com.bista.productservice.services.ProductService;
+
+import jakarta.validation.Valid;
 
 @CrossOrigin(origins = "http://localhost:4200")
 @RestController
@@ -87,6 +87,13 @@ public class ProductController {
 	public ResponseEntity<List<Product>> getProductOnSale(){
 		List<Product> onSale = productService.getProductOnSale();
 		return ResponseEntity.status(HttpStatus.OK).body(onSale);
+	}
+	
+	@GetMapping("/search/{keyword}")
+	public ResponseEntity<PageableProduct> searchProduct(@PathVariable("keyword") String keyword, @RequestParam("page") Integer page, @RequestParam("size") Integer size){
+		PageableProduct searchResult = productService.searchProduct(keyword, page, size);
+		
+		return ResponseEntity.status(HttpStatus.OK).body(searchResult);
 	}
 	
 }

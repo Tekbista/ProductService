@@ -19,4 +19,5 @@ public interface ProductService {
 	List<Product> getNewArrivalProducts();
 	List<Product> getProductOnSale();
 	List<Product> addProducts(List<Product> products);
+	PageableProduct searchProduct(String keyword, Integer pageNum, Integer pageSize);
 }

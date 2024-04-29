@@ -5,13 +5,14 @@ server:
 spring:
   profiles:
     active:
-    - test
-  application:
-    name: product
+    - stage
     
-  config:
-    import:
-    - configserver:http://localhost:8071
+#  application:
+#    name: product
+#    
+#  config:
+#    import:
+#    - configserver:http://localhost:8071
  
   jpa:
     hibernate:
@@ -21,78 +22,78 @@ spring:
       hibernate:
         dialect: org.hibernate.dialect.MySQL8Dialect  
         
-#---
-#spring:
-#  datasource:
-#    driver-class-name: com.mysql.cj.jdbc.Driver
-#    url: jdbc:mysql://${MYSQL_HOST:localhost}:${MYSQL_PORT:3306}/shop24x7_stage
-#    username: root
-#    password: samuel545
-#  jpa:
-#    hibernate:
-#      ddl-auto: update
-#    show-sql: 'false'
-#    properties:
-#      hibernate:
-#        dialect: org.hibernate.dialect.MySQL8Dialect
-#  config:
-#    activate:
-#      on-profile: prod
-#
-#---
-#spring:
-#  datasource:
-#    driver-class-name: com.mysql.cj.jdbc.Driver
-#    url: jdbc:mysql://${MYSQL_HOST:localhost}:${MYSQL_PORT:3306}/shop24x7_stage
-#    username: root
-#    password: samuel545
-#  jpa:
-#    hibernate:
-#      ddl-auto: update
-#    show-sql: 'false'
-#    properties:
-#      hibernate:
-#        dialect: org.hibernate.dialect.MySQL8Dialect
-#  config:
-#    activate:
-#      on-profile: qa
-#
-#
-#---
-#spring:
-#  datasource:
-#    driver-class-name: com.mysql.cj.jdbc.Driver
-#    url: jdbc:mysql://${MYSQL_HOST:localhost}:${MYSQL_PORT:3306}/shop24x7_preqa
-#    username: root
-#    password: samuel545
-#  jpa:
-#    hibernate:
-#      ddl-auto: update
-#    show-sql: 'false'
-#    properties:
-#      hibernate:
-#        dialect: org.hibernate.dialect.MySQL8Dialect
-#  config:
-#    activate:
-#      on-profile: preqa
-#  
-#---
-#spring:
-#  datasource:
-#    driver-class-name: com.mysql.cj.jdbc.Driver
-#    url: jdbc:mysql://localhost:3306/shop24x7_stage
-#    username: root
-#    password: samuel545
-#  jpa:
-#    hibernate:
-#      ddl-auto: update
-#    show-sql: 'false'
-#    properties:
-#      hibernate:
-#        dialect: org.hibernate.dialect.MySQL8Dialect
-#  config:
-#    activate:
-#      on-profile: stage
+---
+spring:
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://${MYSQL_HOST:localhost}:${MYSQL_PORT:3306}/shop24x7_stage
+    username: root
+    password: samuel545
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: 'false'
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.MySQL8Dialect
+  config:
+    activate:
+      on-profile: prod
+
+---
+spring:
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://${MYSQL_HOST:localhost}:${MYSQL_PORT:3306}/shop24x7_stage
+    username: root
+    password: samuel545
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: 'false'
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.MySQL8Dialect
+  config:
+    activate:
+      on-profile: qa
+
+
+---
+spring:
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://${MYSQL_HOST:localhost}:${MYSQL_PORT:3306}/shop24x7_preqa
+    username: root
+    password: samuel545
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: 'false'
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.MySQL8Dialect
+  config:
+    activate:
+      on-profile: preqa
+  
+---
+spring:
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://${MYSQL_HOST:localhost}:${MYSQL_PORT:3306}/shop24x7_stage?enabledTLSProtocols=TLSv1.2
+    username: ${MYSQL_USER:root}
+    password: ${MYSQL_PASSWORD:samuel545}
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: 'false'
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.MySQL8Dialect
+  config:
+    activate:
+      on-profile: stage
   
 
 #eureka:

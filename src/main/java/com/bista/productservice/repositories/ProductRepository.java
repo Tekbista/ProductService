@@ -20,4 +20,5 @@ public interface ProductRepository extends JpaRepository<Product, Long>{
 	List<Product> findTop8ByOrderByCreatedOnDesc();
 	@Query(value = "SELECT * from product WHERE discount_price > 0 LIMIT 8", nativeQuery = true)
 	List<Product> findProductOnSale();
+	Page<Product> findByDescriptionContainingIgnoreCase(String keyword, Pageable pageable);
 }

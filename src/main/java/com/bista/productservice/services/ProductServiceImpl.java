@@ -145,5 +145,23 @@ public class ProductServiceImpl implements ProductService{
 		return null;
 	}
 
+	@Override
+	public PageableProduct searchProduct(String keyword, Integer pageNum, Integer pageSize) {
+		PageableProduct pageableProduct = new PageableProduct();
+		List<Product> products = new ArrayList<>();
+		Pageable pageable = PageRequest.of(pageNum, pageSize);
+		
+		Page<Product> page = productRepository.findByDescriptionContainingIgnoreCase(keyword, pageable);
+		
+		if(page.hasContent()) {
+            products = page.getContent();
+        } 
+		
+		pageableProduct.setProducts(products);
+		pageableProduct.setTotalPage(page.getTotalPages());
+		
+		return pageableProduct;
+	}
+
 
 }
