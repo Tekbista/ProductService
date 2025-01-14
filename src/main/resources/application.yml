@@ -81,7 +81,7 @@ spring:
 spring:
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
-    url: jdbc:mysql://${MYSQL_HOST:localhost}:${MYSQL_PORT:3306}/shop24x7_stage?enabledTLSProtocols=TLSv1.2
+    url: jdbc:mysql://${MYSQL_HOST:localhost}:${MYSQL_PORT:3307}/shop24x7_stage?enabledTLSProtocols=TLSv1.2
     username: ${MYSQL_USER:root}
     password: ${MYSQL_PASSWORD:samuel545}
   jpa:
@@ -94,7 +94,12 @@ spring:
   config:
     activate:
       on-profile: stage
-  
+
+  security:
+    oauth2:
+      resourceserver:
+        jwt:
+          issuer-uri: http://localhost:8180/realms/angular-app
 
 #eureka:
 #  instance:
